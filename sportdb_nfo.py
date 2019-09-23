@@ -52,7 +52,7 @@ teamid = TI.get_team_id()
 last_game = TI.get_last_game(teamid)
 
 
-path = ("/Users/adam/Desktop/Python/CrashCourse/" + last_game[0]['strFilename'] + ".nfo")
+path = (os.path.dirname(__file__) + "/" + last_game[0]['strFilename'] + ".nfo")
 NFO = open(path, 'w')
 
 NFO.write('<?xml version="1.0" encoding="utf-8" standalone="yes"?>' + "\n")
