@@ -64,19 +64,3 @@ NFO.write("<year>" + last_game[0]['strSeason'] + "</year>" + "\n")
 NFO.write("</episodedetails>" + "\n")
 
 NFO.close()
-#teamid = get_team_id('NHL', 'Vancouver Canucks')
-
-#VC.get_last_game(teamid)
-
-
-'''
-url = "https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=134850"
-
-response = requests.get(url)
-response.raise_for_status()
-
-canuck_info = json.loads(response.text)
-
-c = canuck_info['teams']
-pprint.pprint(lstr[1]['strLeague'])
-pprint.pprint(c[0]['idTeam'])'''
