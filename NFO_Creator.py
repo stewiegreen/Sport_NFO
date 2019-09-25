@@ -1,29 +1,23 @@
-import json, requests, sys, pprint, os 
+import json, requests, sys, os, pprint 
 import sportgrabber as sg
 
-input_league = input("Which League is your team is? ")
-input_team = input("Which team's latest game should I find? ")
-print("Thank you, I'll look for the lastest " + input_league + " game " + " where the " + input_team + " played." )
 
-TI = sg.TeamInfo(input_league.title(), input_team.title())
-
-teamid = TI.get_team_id()
-
-last_game = TI.get_last_game(teamid)
-
-
-path = (os.path.dirname(__file__) + "/" + last_game[0]['strFilename'] + ".nfo")
-NFO = open(path, 'w')
+league = sg.LeagueInfo.get_leagues()
 
 
 
-NFO.write('<?xml version="1.0" encoding="utf-8" standalone="yes"?>' + "\n")
-NFO.write("<episodedetails>" + "\n")
-NFO.write("  <plot>" + last_game[0]["strAwayTeam"] + " vs. " + last_game[0]["strHomeTeam"] + "</plot>" + "\n")
-NFO.write("<lockdata>false</lockdata>" + "\n")
-NFO.write("<title>" + last_game[0]['strEvent'] + "</title>" + "\n")
-NFO.write("<year>" + last_game[0]['strSeason'] + "</year>" + "\n")
-NFO.write("</episodedetails>" + "\n")
+TI = sg.TeamInfo(league)
+
+teams = TI.get_teams(league)
 
 
-NFO.close()
+input_date = input("Which date did the game occur? (yyyy-mm-dd)")
+
+sg.Date(input_date)
+
+    
+print("Thank you, generating file")
+
+game_day = TI.date_played(input_date, teams)
+
+TI.create_nfo(game_day)
