@@ -13,11 +13,15 @@ teams = TI.get_teams(league)
 
 input_date = input("Which date did the game occur? (yyyy-mm-dd)")
 
-sg.Date(input_date)
+date = sg.Date(input_date)
+datecheck = date.date_checker()
 
-    
-print("Thank you, generating file")
 
-game_day = TI.date_played(input_date, teams)
+if datecheck:
+    print("Thank you, generating file")
+    game_day = TI.date_played(input_date, teams)
+    TI.create_nfo(game_day)
 
-TI.create_nfo(game_day)
+else:
+    print("Invalid Date format")
+
