@@ -4,8 +4,8 @@ class Date():
     def __init__(self, date):
         self.date = date
     
-    def date_checker(date):
-        separate = date.split('-')
+    def date_checker(self):
+        separate = self.date.split('-')
         if len(separate) == 3:
             
             if len(separate[0]) == 4:
@@ -135,10 +135,16 @@ class TeamInfo():
         awayteam = gameinfo['strAwayTeam']
         eventname = gameinfo['strEvent']
         leaguename = gameinfo['strLeague']
-        awayteamscore = gameinfo['intAwayScore']
-        hometeamscore = gameinfo['intHomeScore']
+        awayscore = gameinfo['intAwayScore']
+        homescore = gameinfo['intHomeScore']
+        awayshots = gameinfo['intAwayShots']
+        homeshots = gameinfo['intHomeShots']
         filename = gameinfo['strFilename']
         season = gameinfo['strSeason']
+        sport = gameinfo['strSport']
+        
+        
+        
         if type(gameinfo) == dict: 
             path = (os.path.dirname(__file__) + "/" + filename + ".nfo")
             NFO = open(path, 'w')
