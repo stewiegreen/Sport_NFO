@@ -51,8 +51,15 @@ class LeagueInfo():
                 print("More than one match, please choose a league:" + "\n")
                 for y in range(len(get_league)):
                     print(str(y) + ". " + get_league[y] + "\n")
-                
-                usr_input = input("Select a number:")
+                while True:
+                    try:
+                        usr_input = int(input("Select a number:"))
+                        if int(usr_input) > int(y):
+                            continue
+                        else:
+                            break
+                    except:
+                        print("Not a valid option")
             # using that choice, search for the team again 
                 for league in leagues:
                     if get_league[int(usr_input)].lower() in (league['strLeague'].lower()):
@@ -96,11 +103,14 @@ class TeamInfo():
                     print(str(y) + ". " + get_team[y] + "\n")
                 
                 while True:
-                    usr_input = input("Select a number:")
-                    if int(usr_input) > int(y):
-                        continue
-                    else:
-                        break
+                    try:
+                        usr_input = int(input("Select a number:"))
+                        if int(usr_input) > int(y):
+                            continue
+                        else:
+                            break
+                    except:
+                        print("Not a valid option")    
                 
             # using that choice, search for the team again 
                 for team in teams:
