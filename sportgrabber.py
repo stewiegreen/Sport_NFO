@@ -95,7 +95,13 @@ class TeamInfo():
                 for y in range(len(get_team)):
                     print(str(y) + ". " + get_team[y] + "\n")
                 
-                usr_input = input("Select a number:")
+                while True:
+                    usr_input = input("Select a number:")
+                    if int(usr_input) > int(y):
+                        continue
+                    else:
+                        break
+                
             # using that choice, search for the team again 
                 for team in teams:
                     if get_team[int(usr_input)].lower() in (team['strTeam'].lower()):
@@ -130,29 +136,33 @@ class TeamInfo():
         
 
     def create_nfo(self, gameinfo, scores = False):
-        date = gameinfo['dateEvent']
-        hometeam = gameinfo['strHomeTeam']
-        awayteam = gameinfo['strAwayTeam']
-        eventname = gameinfo['strEvent']
-        leaguename = gameinfo['strLeague']
-        awayscore = gameinfo['intAwayScore']
-        homescore = gameinfo['intHomeScore']
-        awayshots = gameinfo['intAwayShots']
-        homeshots = gameinfo['intHomeShots']
-        filename = gameinfo['strFilename']
-        season = gameinfo['strSeason']
-        sport = gameinfo['strSport']
-        
-        
-        
         if type(gameinfo) == dict: 
+            date = gameinfo['dateEvent']
+            hometeam = gameinfo['strHomeTeam']
+            awayteam = gameinfo['strAwayTeam']
+            eventname = gameinfo['strEvent']
+            leaguename = gameinfo['strLeague']
+            awayscore = gameinfo['intAwayScore']
+            homescore = gameinfo['intHomeScore']
+            awayshots = gameinfo['intAwayShots']
+            homeshots = gameinfo['intHomeShots']
+            filename = gameinfo['strFilename']
+            season = gameinfo['strSeason']
+            sport = gameinfo['strSport']
+            
+            
+            
+        
             path = (os.path.dirname(__file__) + "/" + filename + ".nfo")
             NFO = open(path, 'w')
 
 
             NFO.write('<?xml version="1.0" encoding="utf-8" standalone="yes"?>' + "\n")
             NFO.write("<episodedetails>" + "\n")
-            NFO.write("  <plot>" + awayteam + " vs. " + hometeam + "</plot>" + "\n")
+            NFO.write("  <plot>The " + leaguename + " presents the "  + awayteam + " against the " + hometeam + ".   " + "\n" + "***This game was played on " + date + ".   " + "\n")
+            #leaving score option here
+            #NFO.write("***Score: " + "\n")
+            #NFO.write(awayteam + ": " + awayscore + "\n" + hometeam + ": " + homescore + "\n" + "</plot>")
             NFO.write("<lockdata>false</lockdata>" + "\n")
             NFO.write("<title>" + eventname + "</title>" + "\n")
             NFO.write("<year>" + season + "</year>" + "\n")
@@ -162,5 +172,5 @@ class TeamInfo():
             NFO.close()
 
         else:
-            pass
+            print("Sorry, something has gone wrong")
 
