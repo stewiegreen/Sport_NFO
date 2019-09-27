@@ -1,4 +1,4 @@
-import json, requests, sys, pprint, os
+import json, requests, sys, os
 
 class Date():
     def __init__(self, date):
@@ -126,8 +126,13 @@ class TeamInfo():
         response = requests.get(url)
         response.raise_for_status()
         lookup = json.loads(response.text)
-        last_game = lookup['results']
-        return last_game
+        event = lookup['results'][0]['idEvent']
+        newurl = "https://www.thesportsdb.com/api/v1/json/1/lookupevent.php?id=" + str(event)
+        response = requests.get(newurl)
+        response.raise_for_status()
+        lookup = json.loads(response.text)
+        lastgame = lookup['events'][0]
+        return lastgame
     
     def date_played(self, date, teamid):
         url = "https://www.thesportsdb.com/api/v1/json/1/eventsday.php?d=" + str(date)
@@ -169,7 +174,7 @@ class TeamInfo():
 
             NFO.write('<?xml version="1.0" encoding="utf-8" standalone="yes"?>' + "\n")
             NFO.write("<episodedetails>" + "\n")
-            NFO.write("  <plot>The " + leaguename + " presents the "  + awayteam + " against the " + hometeam + ".   " + "\n" + "***This game was played on " + date + ".   " + "\n")
+            NFO.write("  <plot>The " + leaguename + " presents the "  + awayteam + " against the " + hometeam + ".   " + "\n" + " This game was played on " + date + ".   " + "\n")
             #leaving score option here
             #NFO.write("***Score: " + "\n")
             #NFO.write(awayteam + ": " + awayscore + "\n" + hometeam + ": " + homescore + "\n" + "</plot>")
