@@ -174,7 +174,7 @@ class TeamInfo():
 
             NFO.write('<?xml version="1.0" encoding="utf-8" standalone="yes"?>' + "\n")
             NFO.write("<episodedetails>" + "\n")
-            NFO.write("  <plot>The " + leaguename + " presents the "  + awayteam + " against the " + hometeam + ".   " + "\n" + " This game was played on " + date + ".   " + "\n")
+            NFO.write("  <plot>The " + leaguename + " presents the "  + awayteam + " against the " + hometeam + ".   " + "\n" + " This game was played on " + date + ".   " + "\n" + "</plot>")
             #leaving score option here
             #NFO.write("***Score: " + "\n")
             #NFO.write(awayteam + ": " + awayscore + "\n" + hometeam + ": " + homescore + "\n" + "</plot>")
