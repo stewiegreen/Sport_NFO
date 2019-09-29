@@ -1,4 +1,4 @@
-import json, requests, sys, os
+import json, requests, sys, os, re
 
 class Date():
     def __init__(self, date):
