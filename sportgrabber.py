@@ -5,20 +5,11 @@ class Date():
         self.date = date
     
     def date_checker(self):
-        separate = self.date.split('-')
-        if len(separate) == 3:
-            
-            if len(separate[0]) == 4:
-            
-                if len(separate[1]) == 2:
-                
-                    if len(separate[2]) == 2:
-                        return True
-                    
-                else: return False
-            else: return False
-        else: return False
-
+        dateregex = re.compile(r'\d\d\d\d-\d\d-\d\d')
+        if dateregex.search(self.date):
+            return True
+        else:
+            return False
 
 class LeagueInfo():
     def __init__(self):
