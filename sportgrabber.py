@@ -65,19 +65,22 @@ class TeamInfo():
         
     
     def get_teams(self, league):
-        
+        usr_input = ''
+        get_team = []
+        i = 0
         url = "https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=" + league
         response = requests.get(url)
         response.raise_for_status()
         lookup = json.loads(response.text)
         teams = lookup['teams']
      
-
-        usr_input = ''
-        get_team = []
-        i = 0
+        input_team = input("Which team? ")
+        for i in range(len(teams)):
+            if input_team.lower() == (teams[i]['strTeamShort'].lower()):
+                return teams[i]['idTeam']
+            else:
+                continue                  
         while not get_team:
-            input_team = input("Which team? ")
             for i in range(len(teams)):
                 if input_team.lower() in (teams[i]['strTeam'].lower()):
                     get_team.append(teams[i]['strTeam'])
@@ -109,7 +112,6 @@ class TeamInfo():
                         return team['idTeam']
             else:
                 print ("No Matches Found")
-
 
 
     def get_last_game(self, teamid):
