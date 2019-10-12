@@ -91,9 +91,6 @@ class Date():
 
 
 def get_teams(league):
-    usr_input = ''
-    get_team = []
-    i = 0
     url = "https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=" + league
     response = requests.get(url)
     response.raise_for_status()
@@ -102,6 +99,9 @@ def get_teams(league):
     return teams
 
 def find_team(teams, team):
+    usr_input = ''
+    get_team = []
+    i = 0
     input_team = team
     for i in range(len(teams)):
         if input_team.lower() == (teams[i]['strTeamShort'].lower()):
