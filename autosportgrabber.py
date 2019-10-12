@@ -25,12 +25,6 @@ def parse_filenames(filelist):
     extlist.append(filelist[9])
     return leaguelist, awayteamlist, hometeamlist, datelist, extlist
 
-#def separate_league(filelist):
-#    datelist = []
-#    for i in range len(filelist):
-#        leaguelist.append(filelist[i][0])
-#    return leaguelist
-
 
 def get_leagues():
 
@@ -83,6 +77,7 @@ class Date():
         self.date = date
 
     def date_checker(self):
+        
         dateregex = re.compile(r'\d\d\d\d-\d\d-\d\d')
         if dateregex.search(self.date):
             return True
@@ -141,8 +136,6 @@ def find_team(teams, team):
         else:
             print ("No Matches Found")
 
-
-
 def get_last_game(teamid):
     url = "https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=" + str(teamid)
     response = requests.get(url)
@@ -171,7 +164,6 @@ def date_played(date, teamid):
 
     print("Sorry, No Match")
 
-
 def create_nfo(gameinfo, scores = False):
     if type(gameinfo) == dict:
         date = gameinfo['dateEvent']
@@ -187,12 +179,8 @@ def create_nfo(gameinfo, scores = False):
         season = gameinfo['strSeason']
         sport = gameinfo['strSport']
 
-
-
-
         path = (os.path.dirname(__file__) + "/" + filename + ".nfo")
         NFO = open(path, 'w')
-
 
         NFO.write('<?xml version="1.0" encoding="utf-8" standalone="yes"?>' + "\n")
         NFO.write("<episodedetails>" + "\n")

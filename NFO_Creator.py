@@ -1,6 +1,5 @@
 import autosportgrabber as sg
 
-
 leagues = sg.get_leagues()
 input_league = input("Which League? ")
 league = sg.find_league(leagues, input_league)
@@ -10,6 +9,8 @@ team = sg.find_team(teams, input_team)
 
 while True:
     input_date = input("Which date did the game occur? (yyyy-mm-dd)" + "\n" + "Leave blank for latest game :")
+    input_date = input_date.replace('.','-')
+    input_date = input_date.replace('/','-')
 
     if input_date == "":
         game_day = sg.get_last_game(team)
@@ -27,7 +28,6 @@ while True:
         game_day = sg.date_played(input_date, team)
         sg.create_nfo(game_day)
         break
-
 
     else:
         print("Sorry, something went wrong.")

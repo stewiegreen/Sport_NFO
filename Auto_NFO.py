@@ -9,7 +9,6 @@ for root, dirs, files in os.walk(folder):
         if sg.find_game(file) != None:
             specgame = sg.find_game(file)
             filelist.append(specgame)
-#print(filelist)
 
 for file in filelist:
 
@@ -20,6 +19,7 @@ for file in filelist:
     stringhome = home[0]
     stringdate = date[0]
     stringdate = stringdate.replace('.','-')
+    stringdate = stringdate.replace('/','-')
 
     leagues = sg.get_leagues()
 
